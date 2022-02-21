@@ -707,3 +707,37 @@ db_20 <- mask(crop(dif4, extent(dB4)), dB4)
 
 dB5 <- spTransform(B, proj4string(dif5))
 db_21 <- mask(crop(dif5, extent(dB5)), dB5)
+
+# THE SAME PROCEDURE FOR ALL THE UPP SAMPLING PLOTS
+
+dif.H.tot <- spTransform(H, proj4string(dif))
+db_H_tot <- mask(crop(dif, extent(dif.H.tot)), dif.H.tot)
+
+dif.L.tot <- spTransform(L, proj4string(dif))
+db_L_tot <- mask(crop(dif, extent(dif.L.tot)), dif.L.tot)
+
+dif.N.tot <- spTransform(N, proj4string(dif))
+db_N_tot <- mask(crop(dif, extent(dif.N.tot)), dif.N.tot)
+
+dif.Q.tot <- spTransform(Q, proj4string(dif))
+db_Q_tot <- mask(crop(dif, extent(dif.Q.tot)), dif.Q.tot)
+
+dif.T.tot <- spTransform(T, proj4string(dif))
+db_T_tot <- mask(crop(dif, extent(dif.T.tot)), dif.T.tot)
+
+# PLOT THE DIFFERENCE FOR THE SAMPLING PLOTS SQUARE
+
+plot(db_B_tot, main = "NDVI diff.  '21-'16 Uppangala Sampling Plot B")
+plot(db_17)
+plot(db_18)
+plot(db_19)
+plot(db_20)
+plot(db_21)
+
+plot(db_H_tot, main = "NDVI diff.  '21-'16 Uppangala Sampling Plot H")
+plot(db_L_tot, main = "NDVI diff.  '21-'16 Uppangala Sampling Plot L")
+plot(db_N_tot, main = "NDVI diff.  '21-'16 Uppangala Sampling Plot N")
+plot(db_Q_tot, main = "NDVI diff.  '21-'16 Uppangala Sampling Plot Q")
+plot(db_T_tot, main = "NDVI diff.  '21-'16 Uppangala Sampling Plot T")
+
+
