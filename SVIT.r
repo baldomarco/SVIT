@@ -29,7 +29,7 @@ ext <- c(75.25, 75.55, 12.15, 12.45)
 
 # DMP dataset
 dmp.wg <- crop(dmp.multi,ext)
-
+ 
 # Giving names at the products
 names(dmp.wg) <- c("Jan 99"," Jan 00"," Jan 01"," Jan 02"," Jan 03","Jan 04","Jan 05","Jan 06","Jan 07","Jan 08","Jan 09","Jan 10","Jan 11","Jan 12","Jan 13","Jan 14","Jan 15","Jan 16","Jan 17","Jan 18","Jan 19","Jan 20")
 
