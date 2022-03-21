@@ -254,6 +254,45 @@ line(NDVI_Medians)
 #      intercept   Angolar coeff.
 #      [1]  0.746  0.003
 
+
+
+
+###########################__________________________________________###########################################
+
+Tilde operator is used to define the relationship between dependent variable and independent variables in a statistical model formula. The variable on the left-hand side of tilde operator is the dependent variable and the variable(s) on the right-hand side of tilde operator is/are called the independent variable(s). So, tilde operator helps to define that dependent variable depends on the independent variable(s) that are on the right-hand side of tilde operator.
+Example
+
+> Regression_Model <- lm(y~ x1 + x2 + x3)
+
+Here, the object Regression_Model stores the formula for linear regression model created by using function lm and y is the dependent variable and x1, x2, and x3 are independent variables.
+
+This model can be created by using a dot (.) if we want to include all the independent variables but for this purpose, we should have all the variables stored in a data frame.
+Example
+
+> Regression_Data <- data.frame(x1, x2, x3, y)
+> Regression_Model_New < - lm(y~ . , data = Regression_Data)
+
+This will have the same output as the previous model, but we cannot use tilde with dot if we want to create a model with few variables.
+
+Suppose you want to create a new model with x1 and x3 only then it can be done as follows −
+
+> Regression_Model_New1 <- lm(y~ x1 + x3, data = Regression_Data)
+
+But we cannot do it using dot with tilde as −
+
+> Regression_Model_New2_Incorrect <- lm(y~ . + x3, data = Regression_Data)
+
+https://www.tutorialspoint.com/how-to-write-text-and-output-it-as-a-text-file-using-r
+
+
+# COULD BE PRESENT SOME ERROR STARTING FROM THE DIPENDENT (VEG INDICES) AND INDIPENDENT VARIABLE (TIME) OF THE SISTEM!!! 
+# IN MORE WE SHOULD EVALUATE THE STATISTICS COMPERING THE THREE INDECES.
+
+
+#     https://stackoverflow.com/questions/27539033/r-apply-lm-on-each-data-frame-row
+
+
+
 ## Linear model time-dry matter productivity medians (same result)
 m <- lm(Time ~ DMP_Medians)
 m
