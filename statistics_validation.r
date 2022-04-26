@@ -99,6 +99,16 @@ summary(ndvi_pca$model)
 
 
 #________________________________________________________________________________________________
+### to see the medians
+
+summary(dmp.wg)
+
+summary(fapar.wg)
+
+summary(ndvi.wg)
+
+
+#________________________________________________________________________________________________
 ## Data frame extraction
 
 library(tidyverse)
@@ -170,6 +180,7 @@ str(stc_df3)
 
 plot(stc_df3)
 
+#________________________________________________________________________________________________
 ## Linear regression models
 
 #______________________DMP_________________________
@@ -212,14 +223,6 @@ summary(mod3)
 
 plot(mod3)
 #abline(a = mod1$coefficients[1], b = mod1$coefficients[2], col = "red", lwd = 3)
-
-### to see the medians
-
-summary(dmp.wg)
-
-summary(fapar.wg)
-
-summary(ndvi.wg)
 
 
 #________________________________________________________________________________________________
