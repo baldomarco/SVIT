@@ -79,6 +79,25 @@ ggpairs(ndvi.wg)
 levelplot(ndvi.wg, names=c("1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020"))
 boxplot(ndvi.wg, outline=F, horizontal=F, axes=T, names=c("1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020"), col="gold")
 
+
+#________________________________________________________________________________________________
+# Principal Component Analysis (PCA) for raster objects datasets
+# PCA DMP
+dmp_pca <- rasterPCA(dmp.wg)
+plot(dmp_pca$map) 
+summary(dmp_pca$model)
+
+# PCA FAPAR
+fapar_pca <- rasterPCA(fapar.wg)
+plot(fapar_pca$map) 
+summary(fapar_pca$model)
+
+# PCA DMP
+ndvi_pca <- rasterPCA(ndvi.wg)
+plot(ndvi_pca$map) 
+summary(ndvi_pca$model)
+
+
 #________________________________________________________________________________________________
 ## Data frame extraction
 
@@ -201,13 +220,6 @@ summary(dmp.wg)
 summary(fapar.wg)
 
 summary(ndvi.wg)
-
-#________________________________________________________________________________________________
-# test the principal component analysis (PCA)
-dmp_pca <- rasterPCA(dmp.wg)
-plot(dmp_pca$map) 
-summary(dmp_pca$model)
-
 
 
 #________________________________________________________________________________________________
