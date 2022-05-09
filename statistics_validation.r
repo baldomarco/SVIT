@@ -93,85 +93,135 @@ ggpairs(ndvi.wg)
 #________________________________________________________________________________________________
 # Principal Component Analysis (PCA) for our raster objects datasets (dataset CWG products)
 
-# PCA DMP
-dmp_pca <- rasterPCA(dmp.wg)
-plot(dmp_pca$map) 
-summary(dmp_pca$model)
 
-# PCA FAPAR
-fapar_pca <- rasterPCA(fapar.wg)
-plot(fapar_pca$map) 
-summary(fapar_pca$model)
+# Raster PCA analssys all the DMP images products to modelling raster objects in a single one evaluating a single component (DMP index in this case)
+dmpPCA <- rasterPCA(dmp.wg)
+summary(dmpPCA$model)                                                          
+plot(dmpPCA$map)
 
-# PCA DMP
-ndvi_pca <- rasterPCA(ndvi.wg)
-plot(ndvi_pca$map) 
-summary(ndvi_pca$model)
+# Raster PCA analysis all the FAPAR images products to modelling raster objects in a single one evaluating a single component (FAPAR index in this case)
+faparPCA <- rasterPCA(fapar.wg)
+summary(faparPCA$model)                                                         
+plot(faparPCA$map)
 
+# Raster PCA analysis all the NDVI images products to modelling raster objects in a single one evaluating a single component (NDVI index in this case)
+ndviPCA <- rasterPCA(ndvi.wg)
+summary(ndviPCA$model)                                                          
+plot(ndviPCA$map)
 
-#________________________________________________________________________________________________
-## Data frame extraction from the initial raster object metadata (dataset CWG products)
-
-# Used R required packages
+#________________________________________________________________________________________________________________________________________
+## Builds the three data frame used for the statistical validation
+# Used required R packages
 library(tidyverse)
 
-
-# Data frame for DMP dataset CWG satellite products
+#___________________DMP data frame_____________________
 
 fn <- system.file("external/test.grd", package="raster")
 
-stc <- stack( fn, fn)
+stc <- stack(
+  fn,
+  fn
+)
 
-stc_df_dmp <- fortify(dmp.wg, maxpixels = 5689958400) %>% 
+stc_df <- fortify(dmp.wg, maxpixels = 5689958400) %>% 
   pivot_longer(
     .,
     cols = -(1:2),
     names_to = "layer",
   )
 
-stc_df_dmp$value
 
-str(stc_df_dmp)
+#___________________Data frame structure_________________
+stc_df$value
+str(stc_df)
 
-plot(stc_df_dmp)
 
-# Data frame for NDVI dataset CWG satellite products
+#___________________FAPAR data frame_____________________
 
 fn <- system.file("external/test.grd", package="raster")
 
-stc <- stack(fn, fn)
+stc <- stack(
+  fn,
+  fn
+)
 
-stc_df_fapar <- fortify(fapar.wg, maxpixels = 5689958400) %>% 
+stc_df2 <- fortify(fapar.wg, maxpixels = 5689958400) %>% 
   pivot_longer(
     .,
     cols = -(1:2),
     names_to = "layer",
   )
 
-str(stc_df_fapar)
+#___________________Data frame structure_________________
+stc_df2
 
-stc_df_fapar$value
+str(stc_df2)
 
-plot(stc_df_fapar)
+stc_df$value
 
-# Data frame for NDVI dataset CWG satellite products
+
+#___________________NDVI data frame_____________________
 
 fn <- system.file("external/test.grd", package="raster")
 
-stc <- stack(fn,fn)
+stc <- stack(
+  fn,
+  fn
+)
 
-stc_df_ndvi <- fortify(ndvi.wg, maxpixels = 5689958400) %>% 
+stc_df3 <- fortify(ndvi.wg, maxpixels = 5689958400) %>% 
   pivot_longer(
     .,
     cols = -(1:2),
     names_to = "layer",
   )
 
-stc_df_ndvi$value
+#___________________Data frame structure_________________
+stc_df3$value
 
-str(stc_df_ndvi)
+str(stc_df3)
 
-plot(stc_df_ndvi)
+
+
+#_____________Linear regression models___________________
+
+#_______________________DMP______________________________
+
+plot(stc_df)
+mod1 <- lm(stc_df)
+mod1
+summary(mod1)
+plot(mod1)
+#abline(a = mod1$coefficients[1], b = mod1$coefficients[2], col = "red", lwd = 3)
+
+#_______________________FAPAR___________________________
+
+plot(stc_df2)
+mod2 <- lm(stc_df2)
+mod2
+summary(mod2)
+plot(mod2)
+#abline(a = mod1$coefficients[1], b = mod1$coefficients[2], col = "red", lwd = 3)
+
+#________________________NDVI___________________________
+
+plot(stc_df3)
+mod3 <- lm(stc_df3)
+mod3
+summary(mod3)
+plot(mod3)
+#abline(a = mod1$coefficients[1], b = mod1$coefficients[2], col = "red", lwd = 3)
+
+# Computing the medians of each products of the datasets
+# DMP
+summary(dmp.wg)
+
+# FAPAR
+summary(fapar.wg)
+
+# NDVI
+summary(ndvi.wg)
+
 
 #________________________________________________________________________________________________
 ## Linear regression models
