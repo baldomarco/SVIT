@@ -114,6 +114,18 @@ boxplot(ndvi.wg,
         col="gold"
        )
 
+#______________________________________________________________________________________________
+# Computing the medians of each products of the datasets
+# DMP
+summary(dmp.wg)
+
+# FAPAR
+summary(fapar.wg)
+
+# NDVI
+summary(ndvi.wg)
+
+
 #________________________________________________________________________________________________
 # Pearson's Correlation Analysis amoung our satellite cropped for the Central Western Ghat (CWG) products
 
