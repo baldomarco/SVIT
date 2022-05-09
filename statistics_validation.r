@@ -123,7 +123,7 @@ stc <- stack(
   fn
 )
 
-stc_df <- fortify(dmp.wg, maxpixels = 5689958400) %>% 
+stc_df_dmp <- fortify(dmp.wg, maxpixels = 5689958400) %>% 
   pivot_longer(
     .,
     cols = -(1:2),
@@ -132,8 +132,11 @@ stc_df <- fortify(dmp.wg, maxpixels = 5689958400) %>%
 
 
 #___________________Data frame structure_________________
-stc_df$value
-str(stc_df)
+stc_df_dmp
+
+stc_df_dmp$value
+
+str(stc_df_dmp)
 
 
 #___________________FAPAR data frame_____________________
@@ -145,7 +148,7 @@ stc <- stack(
   fn
 )
 
-stc_df2 <- fortify(fapar.wg, maxpixels = 5689958400) %>% 
+stc_df_fapar <- fortify(fapar.wg, maxpixels = 5689958400) %>% 
   pivot_longer(
     .,
     cols = -(1:2),
@@ -153,11 +156,11 @@ stc_df2 <- fortify(fapar.wg, maxpixels = 5689958400) %>%
   )
 
 #___________________Data frame structure_________________
-stc_df2
+stc_df_fapar
 
-str(stc_df2)
+stc_df_fapar$value
 
-stc_df$value
+str(stc_df_fapar)
 
 
 #___________________NDVI data frame_____________________
@@ -169,7 +172,7 @@ stc <- stack(
   fn
 )
 
-stc_df3 <- fortify(ndvi.wg, maxpixels = 5689958400) %>% 
+stc_df_ndvi <- fortify(ndvi.wg, maxpixels = 5689958400) %>% 
   pivot_longer(
     .,
     cols = -(1:2),
@@ -177,9 +180,11 @@ stc_df3 <- fortify(ndvi.wg, maxpixels = 5689958400) %>%
   )
 
 #___________________Data frame structure_________________
-stc_df3$value
+stc_df_ndvi
 
-str(stc_df3)
+stc_df_ndvi$value
+
+str(stc_df_ndvi)
 
 #______________________Linear regression models and additional statistics computation___________________
 
@@ -187,8 +192,8 @@ str(stc_df3)
 
 #_______________________________________DMP______________________________
 
-plot(stc_df)
-mod1 <- lm(stc_df)
+plot(stc_df_dmp)
+mod1 <- lm(stc_df_dmp)
 mod1
 summary(mod1)
 plot(mod1)
@@ -196,8 +201,8 @@ plot(mod1)
 
 #_______________________FAPAR___________________________
 
-plot(stc_df2)
-mod2 <- lm(stc_df2)
+plot(stc_df_fapar)
+mod2 <- lm(stc_df_fapar)
 mod2
 summary(mod2)
 plot(mod2)
@@ -205,8 +210,8 @@ plot(mod2)
 
 #________________________NDVI___________________________
 
-plot(stc_df3)
-mod3 <- lm(stc_df3)
+plot(stc_df_ndvi)
+mod3 <- lm(stc_df_ndvi)
 mod3
 summary(mod3)
 plot(mod3)
