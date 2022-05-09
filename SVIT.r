@@ -7,9 +7,7 @@
 library(ncdf4)
 library(raster)
 library(RStoolbox)
-library(ggplot2)
-library(GGally)
-library(scico)
+
 
 # List the products and loading all together
 # Create the Dry Matter Productivity (DMP) Dataset 
