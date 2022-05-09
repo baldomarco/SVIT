@@ -181,11 +181,11 @@ stc_df3$value
 
 str(stc_df3)
 
+#______________________Linear regression models and additional statistics computation___________________
 
+#  ------- Residuals vs Fitted ----- Normal Q-Q ----- Scale Location ----- Residuals vs Levarege ----- Cook's Distance
 
-#_____________Linear regression models___________________
-
-#_______________________DMP______________________________
+#_______________________________________DMP______________________________
 
 plot(stc_df)
 mod1 <- lm(stc_df)
@@ -212,6 +212,7 @@ summary(mod3)
 plot(mod3)
 #abline(a = mod1$coefficients[1], b = mod1$coefficients[2], col = "red", lwd = 3)
 
+#______________________________________________________________________________________________
 # Computing the medians of each products of the datasets
 # DMP
 summary(dmp.wg)
@@ -293,15 +294,59 @@ Precipitation <- c(5987, 4675, 5492, 5522, 5473, 5371, 5043, 5415, 3907, 4271, 4
 time<- c(1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 
          2014, 2015, 2016, 2017, 2018, 2019)
 
-#________________________________________________________________________________________________
 
-plot(Time, DMP_Medians)
+#_________________________________________________________________________________________________
+# Quartiles analysis
 
-plot(Time, DMP_Medians, type = "b", pch = 19, 
-     col = "red", xlab = "x", ylab = "y")
-plot(Time,DMP_Medians, type="l", col="green", lwd=5, xlab="time", ylab="Kg / ha / day", main="January Western Ghats Dry Matter Productivity")
+# DMP Quartiles plot
+qqnorm(DMP_Medians, 
+       pch = 1, 
+       frame = FALSE
+      )
 
+# FAPAR Quartiles plot
+qqnorm(FAPAR_Medians, 
+       pch = 1, 
+       frame = FALSE
+      )
+
+# NDVI Quartiles plot
+qqnorm(NDVI_Medians, 
+       pch = 1, 
+       frame = FALSE
+      )
+
+# Annual Precipitation Quartiles plot
+qqnorm(Precipitation, 
+       pch = 1, 
+       frame = FALSE
+      )
+
+#________________________________________________________________________________________________________________________________________________________
+# Simple plot of DMP medians trend and distribution
+
+plot(time,
+     DMP_Medians, 
+     type="l", 
+     col="green", 
+     lwd=5, xlab="time", 
+     ylab="Kg / ha / day", 
+     main="January Western Ghats Dry Matter Productivity"
+    )
+
+### Line fitting the DMP_Median values
+### Line (DMP_Medians)
+### Linear model (time ~ dmp medians)
+m <- lm(time ~ DMP_Medians)
+m
+plot(time, DMP_Medians)
+
+# Create a line fitting the points in the graph
+abline(80.5205, 0.4439)
+abline(lm(Time ~ DMP_Medians))
 ### line fitting the DMP_Medians values
+#_______________________________________________________________________
+
 
 line(DMP_Medians)
 
