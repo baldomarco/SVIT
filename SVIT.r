@@ -7,10 +7,7 @@
 library(ncdf4)
 library(raster)
 library(RStoolbox)
-library(rgdal)
-library(gdalUtils)
 library(ggplot2)
-library(rasterVis)
 library(GGally)
 library(scico)
 
@@ -31,14 +28,16 @@ ext <- c(75.25, 75.55, 12.15, 12.45)
 dmp.wg <- crop(dmp.multi,ext)
  
 # Giving names at the products
-names(dmp.wg) <- c("Jan 99"," Jan 00"," Jan 01"," Jan 02"," Jan 03","Jan 04","Jan 05","Jan 06","Jan 07","Jan 08","Jan 09","Jan 10","Jan 11","Jan 12","Jan 13","Jan 14","Jan 15","Jan 16","Jan 17","Jan 18","Jan 19","Jan 20")
+names(dmp.wg) <- c("Jan 99"," Jan 00"," Jan 01"," Jan 02"," Jan 03","Jan 04","Jan 05","Jan 06","Jan 07","Jan 08","Jan 09","Jan 10","Jan 11","Jan 12",
+                   "Jan 13","Jan 14","Jan 15","Jan 16","Jan 17","Jan 18","Jan 19","Jan 20")
 
-# Correlation analyses amoung DMP dataset products of the single dataset
-ggpairs(dmp.wg)
+# Used library
+library(rasterVis)
 
 # DMP images multiple time serie
 levelplot(dmp.wg, 
-          names=c("Jan 99"," Jan 00"," Jan 01"," Jan 02"," Jan 03","Jan 04","Jan 05","Jan 06","Jan 07","Jan 08","Jan 09","Jan 10","Jan 11","Jan 12","Jan 13","Jan 14","Jan 15","Jan 16","Jan 17","Jan 18","Jan 19","Jan 20")
+          names=c("Jan 99"," Jan 00"," Jan 01"," Jan 02"," Jan 03","Jan 04","Jan 05","Jan 06","Jan 07","Jan 08","Jan 09","Jan 10","Jan 11",
+                  "Jan 12","Jan 13","Jan 14","Jan 15","Jan 16","Jan 17","Jan 18","Jan 19","Jan 20")
          )
 
 # DMP multiple time series boxplot visualization
@@ -46,10 +45,10 @@ boxplot(dmp.wg,
         outline=F, 
         horizontal=F, 
         axes=T, 
-        names=c("Jan 99"," Jan 00"," Jan 01"," Jan 02"," Jan 03","Jan 04","Jan 05","Jan 06","Jan 07","Jan 08","Jan 09","Jan 10","Jan 11","Jan 12","Jan 13","Jan 14","Jan 15","Jan 16","Jan 17","Jan 18","Jan 19","Jan 20"), 
+        names=c("Jan 99"," Jan 00"," Jan 01"," Jan 02"," Jan 03","Jan 04","Jan 05","Jan 06","Jan 07","Jan 08","Jan 09","Jan 10","Jan 11","Jan 12",
+                "Jan 13","Jan 14","Jan 15","Jan 16","Jan 17","Jan 18","Jan 19","Jan 20"), 
         col="gold"
        )
-
 
 # Create the Fraction of Absorbed Photosinthetically Active Radiation (FAPAR) Dataset 
 # land.copernicus.vgt.vito.be (FAPAR 1km 1999-2020)
@@ -66,14 +65,13 @@ fapar.multi <- stack(import2)
 fapar.wg <- crop(fapar.multi,ext)
 
 # Names the products
-names(fapar.wg) <- c("Jan 99"," Jan 00"," Jan 01"," Jan 02"," Jan 03","Jan 04","Jan 05","Jan 06","Jan 07","Jan 08","Jan 09","Jan 10","Jan 11","Jan 12","Jan 13","Jan 14","Jan 15","Jan 16","Jan 17","Jan 18","Jan 19","Jan 20")
-
-# Correlation analyses amoung products fo the FAPAR dataset
-ggpairs(fapar.wg)
+names(fapar.wg) <- c("Jan 99"," Jan 00"," Jan 01"," Jan 02"," Jan 03","Jan 04","Jan 05","Jan 06","Jan 07","Jan 08","Jan 09","Jan 10","Jan 11",
+                     "Jan 12","Jan 13","Jan 14","Jan 15","Jan 16","Jan 17","Jan 18","Jan 19","Jan 20")
 
 # FAPAR images multiple time serie
 levelplot(fapar.wg, 
-          names=c("1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020")
+          names=c("1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016",
+                  "2017","2018","2019","2020")
          )
 
 # FAPAR multiple time series boxplot visualization
@@ -81,7 +79,8 @@ boxplot(fapar.wg,
         outline=F, 
         horizontal=F, 
         axes=T, 
-        names=c("1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020"), 
+        names=c("1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017",
+                "2018","2019","2020"), 
         col="gold"
        )
 
@@ -100,30 +99,61 @@ ndvi.multi <- stack(import3)
 ndvi.wg <- crop(ndvi.multi,ext)
 
 # Names the products
-names(ndvi.wg) <- c("Jan 99"," Jan 00"," Jan 01"," Jan 02"," Jan 03","Jan 04","Jan 05","Jan 06","Jan 07","Jan 08","Jan 09","Jan 10","Jan 11","Jan 12","Jan 13","Jan 14","Jan 15","Jan 16","Jan 17","Jan 18","Jan 19","Jan 20")
-
-# Correlation analyses amoung products fo the NDVI dataset
-ggpairs(ndvi.wg)
+names(ndvi.wg) <- c("Jan 99"," Jan 00"," Jan 01"," Jan 02"," Jan 03","Jan 04","Jan 05","Jan 06","Jan 07","Jan 08","Jan 09","Jan 10","Jan 11",
+                    "Jan 12","Jan 13","Jan 14","Jan 15","Jan 16","Jan 17","Jan 18","Jan 19","Jan 20")
 
 # NDVI images multiple time serie
-levelplot(ndvi.wg, names=c("1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020"))
+levelplot(ndvi.wg, names=c("1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015",
+                           "2016","2017","2018","2019","2020"))
 
 # NDVI multiple time series boxplot visualization
 boxplot(ndvi.wg, 
         outline=F, 
         horizontal=F, 
         axes=T, 
-        names=c("1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020"), 
+        names=c("1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017",
+                "2018","2019","2020"), 
         col="gold"
        )
 
+#________________________________________________________________________________________________
+# Pearson's Correlation Analysis amoung our satellite cropped for the Central Western Ghat (CWG) products
 
-## Builds the three data frame
+# Used R required packages
+library(GGally)
 
+# Pearson's Correlation Analyses amoung DMP dataset CWG products
+ggpairs(dmp.wg)
+
+# Pearson's Correlation Analyses amoung FAPAR dataset CWG products
+ggpairs(fapar.wg)
+
+# Pearson's Correlation Analyses amoung NDVI dataset CWG products
+ggpairs(ndvi.wg)
+
+#_____________________________________________________     ###### PCA #######     ___________________________________________________________________
+
+
+
+# raster PCA analyzes all the DMP images products to modelling raster objects in a single one evaluating a single component (DMP index in this case)
+dmpPCA <- rasterPCA(dmp.wg)
+summary(dmpPCA$model)                                                          
+plot(dmpPCA$map)
+
+# raster PCA analyzes all the FAPAR images products to modelling raster objects in a single one evaluating a single component (FAPAR index in this case)
+faparPCA <- rasterPCA(fapar.wg)
+summary(faparPCA$model)                                                         
+plot(faparPCA$map)
+
+# raster PCA analyzes all the NDVI images products to modelling raster objects in a single one evaluating a single component (NDVI index in this case)
+ndviPCA <- rasterPCA(ndvi.wg)
+summary(ndviPCA$model)                                                          
+plot(ndviPCA$map)
+
+
+## Builds the three data frame used for the statistical validation (https://github.com/baldomarco/SVIT/blob/main/statistics_validation.r)
+# Used required R packages
 library(tidyverse)
-#library(raster)
-#library(RStoolbox)
-
 
 #___________________DMP data frame_____________________
 
@@ -223,6 +253,7 @@ summary(mod3)
 plot(mod3)
 #abline(a = mod1$coefficients[1], b = mod1$coefficients[2], col = "red", lwd = 3)
 
+#____________________________________________________________________________________________________________
 # Computing the medians of each products of the datasets
 # DMP
 summary(dmp.wg)
@@ -233,23 +264,8 @@ summary(fapar.wg)
 # NDVI
 summary(ndvi.wg)
 
-# Principal Component Analysis (PCA) for raster objects
-# PCA DMP
-dmp_pca <- rasterPCA(dmp.wg)
-plot(dmp_pca$map) 
-summary(dmp_pca$model)
 
-# PCA FAPAR
-fapar_pca <- rasterPCA(fapar.wg)
-plot(fapar_pca$map) 
-summary(fapar_pca$model)
-
-# PCA DMP
-ndvi_pca <- rasterPCA(ndvi.wg)
-plot(ndvi_pca$map) 
-summary(ndvi_pca$model)
-
-
+#_______________________________________________________________________________________________________________________________________________________
 # Create Matrix for Medians and Time visualization
 # DMP
 summary(dmp.wg)
@@ -266,139 +282,75 @@ NDVI_Medians <- c(0.752, 0.788, 0.76, 0.772, 0.704, 0.736, 0.752, 0.776, 0.74, 0
 # Time
 Time <- c(1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020)
 
-# Simple plot of DMP medians trend and distribution
+# Annual Precipitazioni in Uppangala
 
-plot(time,
-     DMP_Medians, 
-     type="l", 
-     col="green", 
-     lwd=5, xlab="time", 
-     ylab="Kg / ha / day", 
-     main="January Western Ghats Dry Matter Productivity"
-    )
+Precipitation <- c(5987, 4675, 5492, 5522, 5473, 5371, 5043, 5415, 3907, 4271, 4945, 5510, 5167, 5766, 4674, 5556, 5087, 5115, 3993, 6479, 
+       5042, 4320, 4463, 5026, 7220, 5375)
+time<- c(1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 
+         2014, 2015, 2016, 2017, 2018, 2019)
 
-### Line fitting the DMP_Median values
-### Line (DMP_Medians)
-### Linear model (time ~ dmp medians)
-m <- lm(time ~ DMP_Medians)
-m
-plot(time, DMP_Medians)
-
-# Create a line fitting the points in the graph
-abline(80.5205, 0.4439)
-abline(lm(time1 ~ DMP_Medians))
-
-# Quartiles plot
-qqnorm(DMP_Medians, 
-       pch = 1, 
-       frame = FALSE
-      )
-
+#____________________________________________________________________________________________________________________________
 # Create the Time ~ Medians data frame to use ggplot visualization for the 3 indices
+# Used required R packges 
+library(ggplot2)
+
 # DMP
 DMP_df <- data.frame(Time, DMP_Medians)
 DMP_df
 
-# Applicates Smooth Autoregressive Transition Model to the DMP Medians dataframe  
+# Applicates LOWESS - Smooth Autoregressive Transition Model to the DMP Medians data frame  
 ggplot(DMP_df, 
        aes(Time, DMP_Medians)
       ) 
 + geom_point() 
 + stat_smooth()
 
+#______________________________________
 # FAPAR
 FAPAR_df <- data.frame(Time, FAPAR_Medians)
 FAPAR_df
 
-# Applicates Smooth Autoregressive Transition Model to the FAPAR Medians dataframe 
-ggplot(DMP_df, 
+# Applicates LOWESS - Smooth Autoregressive Transition Model to the FAPAR Medians data frame 
+ggplot(FAPAR_df, 
        aes(Time, FAPAR_Medians)
       ) 
 + geom_point() 
 + stat_smooth()
 
+#_______________________________________
 # NDVI
 NDVI_df <- data.frame(Time, NDVI_Medians)
-NDVI_Medians
+NDVI_df
 
-# Applicates Smooth Autoregressive Transition Model to the NDVI Medians dataframe 
-ggplot(DMP_df, 
+# Applicates LOWESS - Smooth Autoregressive Transition Model to the NDVI Medians data frame 
+ggplot(NDVI_df, 
        aes(Time, NDVI_Medians)
       ) 
 + geom_point() 
 + stat_smooth()
 
-#_____________________________________________________###### PCA and STATISTICAL ANALYSIS__________________________________________________________________________
+#_______________________________________
+# Annual Precipitation
+P_df <- data.frame(time, Precipitation)
+P_df
+
+# Applicates LOWESS - Smooth Autoregressive Transition Model to the Annual Precipitation data frame 
+ggplot(P_df, 
+       aes(time, Precipitation)
+      ) 
++ geom_point() 
++ stat_smooth()
 
 
+#___________________________________________________##### DIFFERENTIAL ANALYSES #####___________________________________________________________________________
 
-# raster PCA analyzes all the DMP images products to modelling raster objects in a single one evaluating a single component (DMP index in this case)
-dmpPCA <- rasterPCA(dmp.wg)
-summary(dmpPCA$model)                                                          # PC1 model describes 93.7%
-plot(dmpPCA$map)
+#______________________________________PROJECT SENTINEL 2 10M UPPANGALA RESERVE SHAPE VISUALIZATION____________________________________________________________________
 
-# raster PCA analyzes all the FAPAR images products to modelling raster objects in a single one evaluating a single component (FAPAR index in this case)
-faparPCA <- rasterPCA(fapar.wg)
-summary(faparPCA$model)                                                         # PC1 model describes 93.7%
-plot(faparPCA$map)
+# Used required R packages
+library(rgdal)
+library(gdalUtils)
 
-# raster PCA analyzes all the NDVI images products to modelling raster objects in a single one evaluating a single component (NDVI index in this case)
-ndviPCA <- rasterPCA(ndvi.wg)
-summary(ndviPCA$model)                                                          # PC1 model describes 93.7%
-plot(ndviPCA$map)
-
-#___________________________________________________________ Correlation between indeces
-
-#### dmp.up 21-14
-setwd ("D:/DMP")
-dmp14 <- raster("c_gls_DMP300-RT5_202101100000_GLOBE_OLCI_V1.1.1.nc")
-dmp21 <- raster("c_gls_DMP300-RT5_201401100000_GLOBE_PROBAV_V1.0.1.nc")
-
-dmp14.up <- crop(dmp14, ext)
-dmp21.up <- crop(dmp21, ext)
-
-plot(dmp14.up, dmp21.up, col="blue", xlab="Dry Matter Productivity 2014 (Kg/ha/day)", ylab="Dry Matter Productivity 2021 (Kg/ha/day)")
-abline(0,1,col="red")
-
-## fapar.up 21-14
-setwd ("D:/FAPAR")
-fapar15 <- raster("c_gls_FAPAR300_202101100000_GLOBE_OLCI_V1.1.1.nc")
-fapar21 <- raster("c_gls_FAPAR300_201501100000_GLOBE_PROBAV_V1.0.1.nc")
-
-fapar15.up <- crop(fapar15, ext)
-fapar21.up <- crop(fapar21, ext)
-
-plot(fapar15.up, fapar21.up, col="blue", xlab="Fraction Absorbed Photosynthetically Active Radiation 2015", ylab="Fraction Absorbed Photosynthetically Active Radiation 2021")
-abline(0,1,col="red")
-
-### ndvi.up 21-14
-setwd ("D:/NDVI")
-ndvi14 <- raster("c_gls_NDVI300_202101010000_GLOBE_OLCI_V2.0.1.nc")
-ndvi21 <- raster("c_gls_NDVI300_201401010000_GLOBE_PROBAV_V1.0.1.nc")
-
-ndvi14.up <- crop(ndvi14, ext)
-ndvi21.up <- crop(ndvi21, ext)
-
-plot(ndvi14.up, ndvi21.up, col="blue", xlab="Normalized Difference Vegetation Index 2014", ylab="Normalized Difference Vegetation Index 2021")
-abline(0,1,col="red")
-
-### Correlation analysis between different indeces
-
-plot(fapar21.up, dmp21.up, col="blue")
-abline(0,1,col="red")
-
-plot(ndvi21.up, dmp21.up, col="green")
-abline(0,1,col="red")
-
-plot(fapar21.up, ndvi21.up, col="red")
-abline(0,1,col="blue")
-
-
-
-                                           ##### DIFFERENTIAL ANALYSES #####
-
-#_____________________________________PROJECT SENTINEL 2 10M UPPANGALA RESERVE SHAPE VISUALIZATION____________________________________________________________________
-
+# Set the working directory
 setwd("D:/reserve/")
 
 # Project: "crop the shape of Uppangala Reserve"
@@ -408,16 +360,7 @@ up.shp <- readOGR("D:/reserve/shape file_uppangala.shp")
 summary (up.shp)
 plot(up.shp)
 
-#_____________________________________Uppangala Permanent Plots Shape files______________________________________________________________________________________________________
-
-setwd("D:/reserve/UPPANGALA_PLOTS_SHP")
-
-B <- readOGR("D:/toy/shape file  upsp foe Google eng/UPPANGALA_PLOTS_SHP/Plot-B.shp") 
-H <- readOGR("D:/toy/shape file  upsp foe Google eng/UPPANGALA_PLOTS_SHP/Plot-H.shp") 
-L <- readOGR("D:/toy/shape file  upsp foe Google eng/UPPANGALA_PLOTS_SHP/Plot-L.shp") 
-N <- readOGR("D:/toy/shape file  upsp foe Google eng/UPPANGALA_PLOTS_SHP/Plot-N.shp") 
-Q <- readOGR("D:/toy/shape file  upsp foe Google eng/UPPANGALA_PLOTS_SHP/Plot-Q.shp") 
-T <- readOGR("D:/toy/shape file  upsp foe Google eng/UPPANGALA_PLOTS_SHP/Plot-T.shp") 
+#_____________________________________Second Major Analysis of the research focused on Kadamakal Reserve Forest and Pushpagiry Wildlife Sanctuary Boundaries ______________________________________________________________________________________________________
 
 # Loads the NDVI Sentinel 2-L2A (10m) products related to the Indian Reserve
 # Products have been downloaded from Google Engine thanks the related Python Script
@@ -486,7 +429,9 @@ dev.off()
     q2021
 
 ##### Plot with scico palette Uppangala quadrant multitemporal visualization
-    
+# Used required R packages
+library(scico)
+
 ggR(q2016, geom_raster = TRUE) + scale_fill_scico(palette = "romaO") + ggtitle("Jan 2016") + theme_light() + theme(plot.title.position ='plot', plot.title = element_text(hjust = 0.5))
 ggR(q2017, geom_raster = TRUE) + scale_fill_scico(palette = "romaO") + ggtitle("Jan 2017") + theme_light() + theme(plot.title.position ='plot', plot.title = element_text(hjust = 0.5))
 ggR(q2018, geom_raster = TRUE) + scale_fill_scico(palette = "romaO") + ggtitle("Jan 2018") + theme_light() + theme(plot.title.position ='plot', plot.title = element_text(hjust = 0.5))
@@ -687,6 +632,16 @@ hist(duptot, main="Histogram of Raster(NDVI10m) Difference Jan'21 - Jan'16")
 
 dev off()
 
+#_____________________________________Uppangala Permanent Plots Shape files______________________________________________________________________________________________________
+
+setwd("D:/reserve/UPPANGALA_PLOTS_SHP")
+
+B <- readOGR("D:/toy/shape file  upsp foe Google eng/UPPANGALA_PLOTS_SHP/Plot-B.shp") 
+H <- readOGR("D:/toy/shape file  upsp foe Google eng/UPPANGALA_PLOTS_SHP/Plot-H.shp") 
+L <- readOGR("D:/toy/shape file  upsp foe Google eng/UPPANGALA_PLOTS_SHP/Plot-L.shp") 
+N <- readOGR("D:/toy/shape file  upsp foe Google eng/UPPANGALA_PLOTS_SHP/Plot-N.shp") 
+Q <- readOGR("D:/toy/shape file  upsp foe Google eng/UPPANGALA_PLOTS_SHP/Plot-Q.shp") 
+T <- readOGR("D:/toy/shape file  upsp foe Google eng/UPPANGALA_PLOTS_SHP/Plot-T.shp") 
 
 #_________________________________________Uppangala Plots Differential Analysis using the Uppanagala Sampling Plots Shape Files_____________________________
 
