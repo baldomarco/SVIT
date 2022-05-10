@@ -448,6 +448,26 @@ summary(lm_ndvi_dmp)
 lm_ndvi_fapar <- lm(df10)
 summary(lm_ndvi_fapar)
 
+
+# LOWESS model - LOcally WEighted polynomial regreSSion fitting model - Statistical model often used for the study of time series - it is specially useful when the time series is not to long in time and cannot be fit with good accuracy from the Linear Regression model
+
+# DMP
+lowess_values <- lowess(Time, DMP_medians)  
+lowess_values
+
+# FAPAR
+lowess_values <- lowess(Time, FAPAR_medians)  
+lowess_values
+
+# NDVI
+lowess_values <- lowess(Time, NDVI_medians)  
+lowess_values
+
+# Annual Precipitation
+lowess_values <- lowess(Time, Precipitation)  
+lowess_values
+
+
 #_______________________________________________________________________________________________________________
 # Once we've identified this model as the best, we can proceed to fit the model and analyze the results including the R-squared value and the beta coefficients to determine the exact relationship between the set of predictor variables and the response variable.
 
