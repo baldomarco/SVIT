@@ -311,7 +311,7 @@ time<- c(1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005,
 
 #___________________________________________________________________________________________________________________________________________ Fig. 3c
 # Create the Time ~ Medians data frame to use ggplot visualization for the 3 indices and the Annual Precipitation
-# Used required R packges 
+# Used required R packages 
 library(ggplot2)
 
 # DMP
@@ -321,9 +321,9 @@ DMP_df
 # Application of LOWESS Model - LOcally WEight regreSSion fitting - to the DMP Medians data frame visualization
 ggplot(DMP_df, 
        aes(Time, DMP_Medians)
-      ) 
-+ geom_point() 
-+ stat_smooth()
+      ) +
+geom_point() +
+stat_smooth()
 
 #______________________________________
 # FAPAR
@@ -333,9 +333,9 @@ FAPAR_df
 # Application of LOWESS Model - LOcally WEighted polynomial regreSSion fitting - to the FAPAR Medians data frame visualization
 ggplot(FAPAR_df, 
        aes(Time, FAPAR_Medians)
-      ) 
-+ geom_point() 
-+ stat_smooth()
+      ) +
+geom_point() +
+stat_smooth()
 
 #_______________________________________
 # NDVI
@@ -345,9 +345,9 @@ NDVI_df
 # Application of LOWESS Model - LOcally WEighted polynomial regreSSion fitting - to the NDVI Medians data frame visualization
 ggplot(NDVI_df, 
        aes(Time, NDVI_Medians)
-      ) 
-+ geom_point() 
-+ stat_smooth()
+      ) +
+geom_point() +
+stat_smooth()
 
 #_______________________________________
 # Annual Precipitation in Uppangala 1998 - 2019
@@ -357,9 +357,9 @@ P_df
 # Application of LOWESS Model - LOcally WEighted polynomial regreSSion fitting - to the Annual Precipitation data frame visualization
 ggplot(P_df, 
        aes(Time, Precipitation)
-      ) 
-+ geom_point() 
-+ stat_smooth()
+      ) +
+geom_point() +
+stat_smooth()
 
 
 #_______________________________________
@@ -371,23 +371,23 @@ P_df
 # Application of LOWESS Model - LOcally WEighted polynomial regreSSion fitting - to the Annual Precipitation data frame visualization
 ggplot(P_df, 
        aes(time, precipitation)
-      ) 
-+ geom_point() 
-+ stat_smooth()
+      ) +
+geom_point() +
+stat_smooth()
 
 
 # LOWESS Model - LOcally WEighted polynomial regreSSion fitting - Statistical model often used for the study of time series - it is specially useful when the time series is not to long in time and cannot be fit with good accuracy from the Linear Regression model
 
 # DMP
-lowess_values <- lowess(Time, DMP_medians)  
+lowess_values <- lowess(Time, DMP_Medians)  
 lowess_values
 
 # FAPAR
-lowess_values <- lowess(Time, FAPAR_medians)  
+lowess_values <- lowess(Time, FAPAR_Medians)  
 lowess_values
 
 # NDVI
-lowess_values <- lowess(Time, NDVI_medians)  
+lowess_values <- lowess(Time, NDVI_Medians)  
 lowess_values
 
 # Annual Precipitation 1998 - 2019
