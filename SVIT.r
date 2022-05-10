@@ -293,13 +293,19 @@ FAPAR_Medians <- c(0.736, 0.708, 0.68, 0.724, 0.692, 0.68, 0.728, 0.728, 0.728, 
 summary(ndvi.wg)
 NDVI_Medians <- c(0.752, 0.788, 0.76, 0.772, 0.704, 0.736, 0.752, 0.776, 0.74, 0.78, 0.776, 0.82, 0.756, 0.776, 0.788, 0.756, 0.816, 0.808, 0.74, 0.728, 0.816, 0.836)
 
+# Annual Precipitation in Uppangala 1998 - 2019
+
+Precipitation <- c(5473, 5371, 5043, 5415, 3907, 4271, 4945, 5510, 5167, 5766, 4674, 5556, 5087, 5115, 3993, 6479, 
+       5042, 4320, 4463, 5026, 7220, 5375)
+
 # Time
 Time <- c(1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020)
 
-# Annual Precipitazioni in Uppangala
+# Annual Precipitazioni in Uppangala 1994 - 2019
 
-Precipitation <- c(5987, 4675, 5492, 5522, 5473, 5371, 5043, 5415, 3907, 4271, 4945, 5510, 5167, 5766, 4674, 5556, 5087, 5115, 3993, 6479, 
+precipitation <- c(5987, 4675, 5492, 5522, 5473, 5371, 5043, 5415, 3907, 4271, 4945, 5510, 5167, 5766, 4674, 5556, 5087, 5115, 3993, 6479, 
        5042, 4320, 4463, 5026, 7220, 5375)
+
 time<- c(1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 
          2014, 2015, 2016, 2017, 2018, 2019)
 
@@ -344,13 +350,27 @@ ggplot(NDVI_df,
 + stat_smooth()
 
 #_______________________________________
-# Annual Precipitation
-P_df <- data.frame(time, Precipitation)
+# Annual Precipitation in Uppangala 1998 - 2019
+P_df <- data.frame(Time, Precipitation)
 P_df
 
 # Application of LOWESS Model - LOcally WEighted polynomial regreSSion fitting - to the Annual Precipitation data frame visualization
 ggplot(P_df, 
-       aes(time, Precipitation)
+       aes(Time, Precipitation)
+      ) 
++ geom_point() 
++ stat_smooth()
+
+
+#_______________________________________
+# Annual Precipitation in Uppangala 1999 - 2019
+
+P_df <- data.frame(time, precipitation)
+P_df
+
+# Application of LOWESS Model - LOcally WEighted polynomial regreSSion fitting - to the Annual Precipitation data frame visualization
+ggplot(P_df, 
+       aes(time, precipitation)
       ) 
 + geom_point() 
 + stat_smooth()
@@ -370,8 +390,12 @@ lowess_values
 lowess_values <- lowess(Time, NDVI_medians)  
 lowess_values
 
-# Annual Precipitation
-lowess_values <- lowess(time, Precipitation)  
+# Annual Precipitation 1998 - 2019
+lowess_values <- lowess(Time, Precipitation)  
+lowess_values
+
+# Annual Precipitation 1994 - 2019
+lowess_values <- lowess(time, precipitation)  
 lowess_values
 
 
