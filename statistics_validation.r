@@ -1,4 +1,4 @@
-# Statistical validation analyses on the data sets and results of "Remote sensing analysis on primary productivity and forest cover dynamics: a Western Ghats case study"
+# Statistical validation analyses on the data sets and results of "Remote sensing analysis on primary productivity and forest cover dynamics: a Western Ghats India case study"
 
 ## Multiple Time Series Analysis of Dry Matter Productivity in the Indian Western Ghats region
 ## Periods are always Jan 10th for every available year of the data products (Western Ghats dry season)
