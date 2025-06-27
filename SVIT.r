@@ -406,7 +406,7 @@ lowess_values
 #______________________________________PROJECT SENTINEL 2 10M UPPANGALA RESERVE SHAPE VISUALIZATION____________________________________________________________________
 
 # Used required R packages
-library(rgdal)
+library(rgdal) # install.packages("rgdal", type="source") in oct 2017 stopped to be mantained
 library(gdalUtils)
 
 # Set the working directory
